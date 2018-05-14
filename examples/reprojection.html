@@ -1,11 +1,28 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>reprojection</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="map-container"></div>
-    <script src="reprojection.js"></script>
-  </body>
+
+<head>
+	<title>OpenLayers reprojection</title>
+	<meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+	<style>
+		#map {
+			background-color: rgb(178, 210, 221);
+		}
+    #controls {
+			position: absolute;
+			top: 10px;
+			right: 40px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="map"></div>
+  <div id="controls">
+		<button id="epsg3857">Web Mercator</button>
+		<button id="epsg3182">UTM Zone 22N</button>
+	</div>
+	<script src="reprojection.js"></script>
+</body>
+
 </html>
