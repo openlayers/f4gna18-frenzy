@@ -1,0 +1,25 @@
+{
+  "name": "f4gna18-frenzy",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint examples",
+    "test": "npm run lint",
+    "start": "parcel examples/index.html",
+    "build": "parcel build examples/index.html --out-dir dist/examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openlayers/f4gna18-frenzy.git"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-openlayers": "^9.2.0",
+    "parcel-bundler": "^1.8.1"
+  },
+  "eslintConfig": {
+    "extends": "openlayers"
+  },
+  "dependencies": {
+    "ol": "^5.0.0-beta.13"
+  }
+}
