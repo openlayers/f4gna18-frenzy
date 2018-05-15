@@ -50,12 +50,12 @@
   <div>
     <h1>view animation</h1>
     <pre><code>
-      view.animate({
-        duration: 1500,
-        center: fromLonLat([-110, 45]),
-        rotation: Math.PI / 4,
-        zoom: 12
-      })
+view.animate({
+  duration: 1500,
+  center: fromLonLat([-110, 45]),
+  rotation: Math.PI / 4,
+  zoom: 12
+})
     </code></pre>
   </div>
   <div>
@@ -76,26 +76,26 @@
   <div>
     <h1>reprojection</h1>
     <pre><code>
-      const view = new View({
-        projection: custom
-      });
+const view = new View({
+  projection: custom
+});
 
-      const source = new VectorSource({
-        url: 'http://example.com/world.json',
-        format: new GeoJSON()
-      });
+const source = new VectorSource({
+  url: 'http://example.com/world.json',
+  format: new GeoJSON()
+});
     </code></pre>
   </div>
   <div>
     <h1>reprojection (raster too!)</h1>
     <pre><code>
-      const view = new View({
-        projection: custom
-      });
+const view = new View({
+  projection: custom
+});
 
-      const source = new XYZSource({
-        projection: mercator
-      });
+const source = new XYZSource({
+  projection: mercator
+});
     </code></pre>
     <small class="block center"><a target="_blank" href="./examples/reprojection.html">example</a></small>
   </div>
@@ -104,38 +104,38 @@
   <div>
     <h1>feature editing</h1>
     <pre><code>
-      import {Draw, Modify, Snap} from 'ol/interaction';
+import {Draw, Modify, Snap} from 'ol/interaction';
 
-      map.addInteraction(
-        new Draw({type: 'Polygon', source: source})
-      );
+map.addInteraction(
+  new Draw({type: 'Polygon', source: source})
+);
     </code></pre>
     <small class="block center"><a href="./examples/feature-editor.html" target="_blank">example</a></small>
   </div>
   <div>
     <h1>feature style</h1>
     <pre><code>
-      import {Style, Fill, Stroke} from 'ol/style';
+import {Style, Fill, Stroke} from 'ol/style';
 
-      layer.setStyle(new Style({
-        stroke: new Stroke({
-          color: 'white'
-        }),
-        fill: new Fill({
-          color: [255, 153, 0, 0.5]
-        })
-      }));
+layer.setStyle(new Style({
+  stroke: new Stroke({
+    color: 'white'
+  }),
+  fill: new Fill({
+    color: [255, 153, 0, 0.5]
+  })
+}));
     </code></pre>
   </div>
   <div>
     <h1>feature style (dynamic)</h1>
     <pre><code>
-      layer.setStyle(function(feature, resolution) {
-        if (feature.get('type') == 'special') {
-          return specialStyle;
-        }
-        return otherStyle;
-      });
+layer.setStyle(function(feature, resolution) {
+  if (feature.get('type') == 'special') {
+    return specialStyle;
+  }
+  return otherStyle;
+});
     </code></pre>
     <small class="block center"><a href="./examples/feature-style.html" target="_blank">example</a></small>
   </div>
@@ -144,16 +144,17 @@
   <div>
     <h1>vector tiles</h1>
     <pre><code>
-      import VectorTileLayer from 'ol/layer/VectorTile';
-      import VectorTile from 'ol/source/VectorTile';
-      import MVT from 'ol/source/MVT';
+import VectorTileLayer from 'ol/layer/VectorTile';
+import VectorTile from 'ol/source/VectorTile';
+import MVT from 'ol/source/MVT';
 
-      const vt = new VectorTileLayer({
-        source: new VectorTile({
-          format: new MVT(),
-          url: 'https://free.tilehosting.com/data/v3/{z}/{x}/{y}.pbf.pict'
-        })
-      });
+const vt = new VectorTileLayer({
+  source: new VectorTile({
+    format: new MVT(),
+    url: 'https://free.tilehosting.com/data/v3/' +
+        '{z}/{x}/{y}.pbf.pict'
+  })
+});
     </code></pre>
   </div>
   <div>
@@ -167,21 +168,22 @@
   <div>
     <h1>labels along lines</h1>
     <pre><code>
-      import {Style, Text} from 'ol/style';
+import {Style, Text} from 'ol/style';
 
-      new Style({
-        text: new Text({
-          placement: 'line'
-        })
-      });
+new Style({
+  text: new Text({
+    placement: 'line'
+  })
+});
     </code></pre>
   </div>
   <div>
     <h1>vector tiles (mapbox style)</h1>
     <pre><code>
-      import {apply} from 'ol-mapbox-style';
+import {apply} from 'ol-mapbox-style';
 
-      apply('map', 'https://free.tilehosting.com/styles/bright/style.json');
+apply('map', 'https://free.tilehosting.com/' +
+    'styles/bright/style.json');
     </code></pre>
     <small class="block center"><a href="./examples/vector-tiles.html" target="_blank">example</a></small>
   </div>
@@ -191,9 +193,12 @@
   <div>
     <h1>raster operations</h1>
     <pre><code>
-      import {Raster} from 'ol/source';
+import {Raster} from 'ol/source';
 
-      // more code here...
+const source = new Raster({
+  sources: [elevation, landcover],
+  operation: classify
+});
     </code></pre>
     <small class="block center"><a href="./examples/raster.html" target="_blank">example</a></small>
   </div>

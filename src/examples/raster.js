@@ -7,8 +7,8 @@ import {fromLonLat} from 'ol/proj';
 import sync from 'ol-hashed';
 import colormap from 'colormap';
 
-const minElevation = 0;
-const maxElevation = 10000;
+const minElevation = -1000;
+const maxElevation = 9500;
 const steps = 50;
 const ramp = colormap({
   colormap: 'earth',
@@ -102,13 +102,12 @@ function shade(inputs, data) {
 
       offset = (pixelY * width + pixelX) * 4;
 
-      let r, g, b, a;
+      let r, g, b;
       if (z0 <= data.level) {
         // sea blue
-        r = 145;
-        g = 175;
-        b = 186;
-        a = 255;
+        r = 0;
+        g = 60;
+        b = 136;
       } else {
         const f = Math.min(Math.max(z0 - data.minElevation, 0) / range, 1);
         const index = Math.round(f * (data.steps - 1));
@@ -116,13 +115,12 @@ function shade(inputs, data) {
         r = cosIncidence * color[0];
         g = cosIncidence * color[1];
         b = cosIncidence * color[2];
-        a = elevationData[offset + 3];
       }
 
       shadeData[offset] = r;
       shadeData[offset + 1] = g;
       shadeData[offset + 2] = b;
-      shadeData[offset + 3] = a;
+      shadeData[offset + 3] = elevationData[offset + 3];
     }
   }
 
@@ -146,18 +144,18 @@ const map = new Map({
   target: 'map-container',
   layers: [
     new ImageLayer({
-      opacity: 0.3,
+      opacity: 0.9,
       source: raster
     }),
     new TileLayer({
       source: new XYZ({
-        url: 'https://api.mapbox.com/styles/v1/tschaub/cjh75hlvk00902rquajmff74y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidHNjaGF1YiIsImEiOiJjaW5zYW5lNHkxMTNmdWttM3JyOHZtMmNtIn0.CDIBD8H-G2Gf-cPkIuWtRg'
+        url: 'https://api.mapbox.com/styles/v1/tschaub/cjh7vcx726bd82st9xzgu66sb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidHNjaGF1YiIsImEiOiJjaW5zYW5lNHkxMTNmdWttM3JyOHZtMmNtIn0.CDIBD8H-G2Gf-cPkIuWtRg'
       })
     })
   ],
   view: new View({
     center: fromLonLat([86.9250, 27.9881]),
-    zoom: 13
+    zoom: 12
   })
 });
 
