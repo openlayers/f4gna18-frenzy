@@ -4,8 +4,8 @@
   "scripts": {
     "lint": "eslint examples",
     "test": "npm run lint",
-    "start": "parcel examples/index.html",
-    "build": "parcel build examples/index.html --out-dir dist/examples"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
