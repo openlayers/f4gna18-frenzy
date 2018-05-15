@@ -4,9 +4,15 @@ import View from 'ol/View.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
 
+const locations = {
+  schoenbrunn: [1815783.4408533734, 6137432.250809676],
+  saalbach: [1406637.839459977, 6005525.218153131],
+  erzberg: [1661239.324338066, 6027698.811475954],
+  kaisermuehlen: [1828536.728799714, 6146982.863374246]
+};
+
 const imagery = new TileLayer({
   source: new XYZ({
-    tileSize: 128,
     crossOrigin: 'anonymous',
     url: 'https://maps{1-4}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg'
   })
@@ -19,11 +25,12 @@ const map = new Map({
   target: container,
   view: new View({
     center: [1815783.4408533734, 6137432.250809676],
-    zoom: 18
+    zoom: 19,
+    maxZoom: 19
   })
 });
 
-let radius = 75 * devicePixelRatio;
+let radius = 150;
 document.addEventListener('keydown', function(evt) {
   if (evt.which === 38) {
     radius = Math.min(radius + 5, 150);
@@ -89,5 +96,11 @@ imagery.on('postcompose', function(event) {
     context.putImageData(dest, originX, originY);
     context.stroke();
     context.restore();
+  }
+});
+
+document.getElementById('output').addEventListener('click', function(e) {
+  if (e.target.id) {
+    map.getView().setCenter(locations[e.target.id]);
   }
 });

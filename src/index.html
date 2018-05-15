@@ -211,10 +211,40 @@ const source = new Raster({
 
   <!-- Andreas -->
   <div>
-    <h1>canvas manipulation</h1>
+    <h1>map canvas drawing</h1>
     <pre><code>
+map.on('postcompose', function(event) {
+  const context = event.context;
+  context.font = '30px Arial';
+  context.fillText('© 2018 OpenLayers',
+    10, context.canvas.height - 20);
+});
     </code></pre>
     <small class="block center"><a href="./examples/magnify.html" target="_blank">example</a></small>
+  </div>
+  <div>
+    <h1>map canvas drawing (high level)</h1>
+    <pre><code>
+import {Point} from 'ol/geom';
+
+map.on('postcompose', function(event) {
+  const vectorContext = event.vectorContext;
+  const center = event.frameState.viewState.center;
+  vectorContext.setStyle(pointStyle);
+  vectorContext.drawGeometry(new Point(center));
+});
+    </code></pre>
+  </div>
+  <div>
+    <h1>canvas drawing (high level)</h1>
+    <pre><code>
+import {toContext} from 'ol/render';
+import {Point} from 'ol/geom';
+
+const vectorContext = toContext(canvasElement);
+vectorContext.setStyle(pointStyle);
+vectorContext.drawGeometry(new Point([15, 15]));
+    </code></pre>
   </div>
 
 </body>
