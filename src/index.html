@@ -61,13 +61,13 @@ view.animate({
   <div>
     <h1>animation chaining!</h1>
     <pre><code>
-      view.animate({
-        easing: easeIn,
-        center: london
-      }, {
-        easing: easeOut,
-        center: rome
-      });
+view.animate({
+  easing: easeIn,
+  center: london
+}, {
+  easing: easeOut,
+  center: rome
+});
     </code></pre>
     <small class="block center"><a href="./examples/view-animation.html" target="_blank">example</a></small>
   </div>
@@ -87,7 +87,7 @@ const source = new VectorSource({
     </code></pre>
   </div>
   <div>
-    <h1>reprojection (raster too!)</h1>
+    <h1>reprojection<br>(raster too!)</h1>
     <pre><code>
 const view = new View({
   projection: custom
@@ -128,7 +128,7 @@ layer.setStyle(new Style({
     </code></pre>
   </div>
   <div>
-    <h1>feature style (dynamic)</h1>
+    <h1>feature style<br>(dynamic)</h1>
     <pre><code>
 layer.setStyle(function(feature, resolution) {
   if (feature.get('type') == 'special') {
@@ -158,11 +158,13 @@ const vt = new VectorTileLayer({
     </code></pre>
   </div>
   <div>
-    <h1>decluttering</h1>
+    <h1>decluttered labels</h1>
     <pre><code>
-      new VectorTileLayer({
-        declutter: true
-      });
+import VectorTileLayer from 'ol/layer/VectorTile';
+
+map.addLayer(
+  new VectorTileLayer({declutter: true})
+);
     </code></pre>
   </div>
   <div>
@@ -170,15 +172,18 @@ const vt = new VectorTileLayer({
     <pre><code>
 import {Style, Text} from 'ol/style';
 
-new Style({
-  text: new Text({
-    placement: 'line'
+layer.setStyle(function(feature) {
+  new Style({
+    text: new Text({
+      placement: 'line',
+      text: feature.get('name')
+    })
   })
 });
     </code></pre>
   </div>
   <div>
-    <h1>vector tiles (mapbox style)</h1>
+    <h1>vector tiles<br>(mapbox style)</h1>
     <pre><code>
 import {apply} from 'ol-mapbox-style';
 
