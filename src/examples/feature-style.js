@@ -9,10 +9,30 @@ import Map from 'ol/Map';
 import sync from 'ol-hashed';
 import View from 'ol/View';
 
-const source =        new VectorSource({
+const source = new VectorSource({
   format: new GeoJSON(),
   url: dataURL
 });
+
+const minSession = 108;
+const maxSession = 112;
+let selectedSession;
+
+const output = document.getElementById('output');
+for (let session = maxSession; session >= minSession; --session) {
+  const anchor = document.createElement('a');
+  anchor.innerHTML = session;
+  anchor.dataset.session = session;
+  anchor.addEventListener('mouseover', event => {
+    selectedSession = event.target.dataset.session;
+    source.changed();
+  });
+  anchor.addEventListener('mouseout', () => {
+    selectedSession = '';
+    source.changed();
+  });
+  output.appendChild(anchor);
+}
 
 const map = new Map({
   target: 'map-container',
@@ -29,6 +49,9 @@ const map = new Map({
         let r = 0;
         let d = 0;
         for (const session in member) {
+          if (selectedSession && session !== selectedSession) {
+            continue;
+          }
           const lookup = member[session];
           for (const key in lookup) {
             const party = lookup[key].party;

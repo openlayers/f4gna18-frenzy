@@ -5,10 +5,29 @@
   <title>feature style</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
+  <style>
+    #output {
+      position: absolute;
+      top: 2em;
+      right: 2em;
+      text-align: center;
+      -webkit-text-stroke: 0.5px white;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    #output a {
+      display: block;
+      padding: 1em 0;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
   <div id="map-container"></div>
+  <div id="output">
+    <small>session</small>
+  </div>
   <script src="feature-style.js"></script>
 </body>
 

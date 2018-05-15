@@ -8,6 +8,9 @@
   <link href="big/big.css" rel="stylesheet" type="text/css" />
   <link href="big/highlight.css" rel="stylesheet" type="text/css" />
   <style>
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
     .bright {
       background: #FDCC32;
     }
@@ -114,14 +117,25 @@
     <pre><code>
       import {Style, Fill, Stroke} from 'ol/style';
 
-      new Style({
+      layer.setStyle(new Style({
         stroke: new Stroke({
           color: 'white'
         }),
         fill: new Fill({
           color: [255, 153, 0, 0.5]
         })
-      })
+      }));
+    </code></pre>
+  </div>
+  <div>
+    <h1>feature style (dynamic)</h1>
+    <pre><code>
+      layer.setStyle(function(feature, resolution) {
+        if (feature.get('type') == 'special') {
+          return specialStyle;
+        }
+        return otherStyle;
+      });
     </code></pre>
     <small class="block center"><a href="./examples/feature-style.html" target="_blank">example</a></small>
   </div>
