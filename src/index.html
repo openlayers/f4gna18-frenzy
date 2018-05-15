@@ -45,6 +45,13 @@
     <p>tim@planet.com</p>
   </div>
 
+  <div data-bodyclass="bright center">
+    <h1>OpenLayers 5<br>is coming</h1>
+    <br>
+    <div><code>npm install ol@beta</code></div>
+    <br>
+    <p>What's new? What's cool?</p>
+  </div>
 
   <!-- Tim -->
   <div>
@@ -146,7 +153,7 @@ layer.setStyle(function(feature, resolution) {
     <pre><code>
 import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorTile from 'ol/source/VectorTile';
-import MVT from 'ol/source/MVT';
+import MVT from 'ol/format/MVT';
 
 const vt = new VectorTileLayer({
   source: new VectorTile({
@@ -158,27 +165,30 @@ const vt = new VectorTileLayer({
     </code></pre>
   </div>
   <div>
-    <h1>decluttered labels</h1>
+    <h1>decluttered labels<br>and symbols</h1>
     <pre><code>
-import VectorTileLayer from 'ol/layer/VectorTile';
+import {VectorTileLayer, VectorLayer} from 'ol/layer';
 
-map.addLayer(
-  new VectorTileLayer({declutter: true})
-);
+const vt = new VectorTileLayer({
+  declutter: true
+});
+
+const vector = new VectorLayer({
+  declutter: true
+})
     </code></pre>
   </div>
   <div>
     <h1>labels along lines</h1>
     <pre><code>
-import {Style, Text} from 'ol/style';
+import Text from 'ol/style/Text';
 
 layer.setStyle(function(feature) {
-  new Style({
-    text: new Text({
-      placement: 'line',
-      text: feature.get('name')
-    })
-  })
+  style.setText(new Text({
+    placement: 'line',
+    text: feature.get('name')
+  }));
+  return style;
 });
     </code></pre>
   </div>
@@ -225,8 +235,6 @@ map.on('postcompose', function(event) {
   <div>
     <h1>map canvas drawing (high level)</h1>
     <pre><code>
-import {Point} from 'ol/geom';
-
 map.on('postcompose', function(event) {
   const vectorContext = event.vectorContext;
   const center = event.frameState.viewState.center;
@@ -239,7 +247,6 @@ map.on('postcompose', function(event) {
     <h1>canvas drawing (high level)</h1>
     <pre><code>
 import {toContext} from 'ol/render';
-import {Point} from 'ol/geom';
 
 const vectorContext = toContext(canvasElement);
 vectorContext.setStyle(pointStyle);
