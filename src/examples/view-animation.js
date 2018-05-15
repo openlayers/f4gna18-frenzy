@@ -77,8 +77,8 @@ map.on('click', () => {
       ++done;
       if (done == 2) {
         ++index;
+        output.innerText = tour[index - 1].year;
         if (index < tour.length) {
-          output.innerText = tour[index - 1].year;
           timer = setTimeout(step, 1200);
         }
       }
