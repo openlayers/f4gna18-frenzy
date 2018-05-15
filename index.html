@@ -115,6 +115,33 @@
     <small class="block center">example</small>
   </div>
 
+  <!-- Andreas -->
+  <div>
+    <h1>vector tiles</h1>
+    <pre><code>
+      import {apply} from 'ol-mapbox-style';
+      apply('map', './data/bright.json');
+    </code></pre>
+    <small class="block center">example</small>
+  </div>
+  <div>
+    <h1>decluttering</h1>
+    <pre><code>
+      new VectorTileLayer({
+        declutter: true
+      });
+    </code></pre>
+    <small class="block center">example</small>
+  </div>
+  <div>
+    <h1>line labels</h1>
+    <pre><code>
+      new TextStyle({
+        placement: 'line'
+      });
+    </code></pre>
+    <small class="block center">example</small>
+  </div>
 </body>
 
 </html>
