@@ -103,6 +103,10 @@
     <h1>feature editing</h1>
     <pre><code>
       import {Draw, Modify, Snap} from 'ol/interaction';
+
+      map.addInteraction(
+        new Draw({type: 'Polygon', source: source})
+      );
     </code></pre>
     <small class="block center"><a href="./examples/feature-editor.html" target="_blank">example</a></small>
   </div>
@@ -110,6 +114,15 @@
     <h1>feature style</h1>
     <pre><code>
       import {Style, Fill, Stroke} from 'ol/style';
+
+      new Style({
+        stroke: new Stroke({
+          color: 'white'
+        }),
+        fill: new Fill({
+          color: [255, 153, 0, 0.5]
+        })
+      })
     </code></pre>
     <small class="block center"><a href="./examples/feature-style.html" target="_blank">example</a></small>
   </div>
@@ -119,7 +132,8 @@
     <h1>vector tiles</h1>
     <pre><code>
       import {apply} from 'ol-mapbox-style';
-      apply('map', './data/bright.json');
+
+      apply('map', 'data/bright.json');
     </code></pre>
     <small class="block center"><a href="./examples/vector-tiles.html" target="_blank">example</a></small>
   </div>
