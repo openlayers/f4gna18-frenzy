@@ -20,6 +20,7 @@
     "extends": "openlayers"
   },
   "dependencies": {
+    "drag-drop": "^4.1.0",
     "mproj": "^0.0.16",
     "ol": ">=5.0.0-beta.13 <5.0.0-c",
     "ol-hashed": "^2.0.0-beta.2",

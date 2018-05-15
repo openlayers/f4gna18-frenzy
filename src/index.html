@@ -144,11 +144,17 @@
   <div>
     <h1>vector tiles</h1>
     <pre><code>
-      import {apply} from 'ol-mapbox-style';
+      import VectorTileLayer from 'ol/layer/VectorTile';
+      import VectorTile from 'ol/source/VectorTile';
+      import MVT from 'ol/source/MVT';
 
-      apply('map', 'data/bright.json');
+      const vt = new VectorTileLayer({
+        source: new VectorTile({
+          format: new MVT(),
+          url: 'https://free.tilehosting.com/data/v3/{z}/{x}/{y}.pbf.pict'
+        })
+      });
     </code></pre>
-    <small class="block center"><a href="./examples/vector-tiles.html" target="_blank">example</a></small>
   </div>
   <div>
     <h1>decluttering</h1>
@@ -157,16 +163,27 @@
         declutter: true
       });
     </code></pre>
-    <small class="block center">example</small>
   </div>
   <div>
-    <h1>line labels</h1>
+    <h1>labels along lines</h1>
     <pre><code>
-      new TextStyle({
-        placement: 'line'
+      import {Style, Text} from 'ol/style';
+
+      new Style({
+        text: new Text({
+          placement: 'line'
+        })
       });
     </code></pre>
-    <small class="block center">example</small>
+  </div>
+  <div>
+    <h1>vector tiles with mapbox style objects</h1>
+    <pre><code>
+      import {apply} from 'ol-mapbox-style';
+
+      apply('map', 'https://free.tilehosting.com/styles/bright/style.json');
+    </code></pre>
+    <small class="block center"><a href="./examples/vector-tiles.html" target="_blank">example</a></small>
   </div>
 </body>
 
