@@ -8,7 +8,8 @@ import dragdrop from 'drag-drop/buffer';
 const map = apply('map-container', bright);
 
 function declutter(declutter) {
-  const layer = map.getLayers().item(0);
+  const layers = map.getLayers();
+  const layer = layers.item(layers.getLength() - 1);
   map.removeLayer(layer);
   map.addLayer(new VectorTileLayer({
     source: layer.getSource(),
