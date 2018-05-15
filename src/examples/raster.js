@@ -29,6 +29,10 @@ function shade(inputs, data) {
   const width = elevationImage.width;
   const height = elevationImage.height;
   const elevationData = elevationImage.data;
+  if (data.mode === 'raw') {
+    return {data: elevationData, width: width, height: height};
+  }
+
   const shadeData = new Uint8ClampedArray(elevationData.length);
   const dp = data.resolution * 2;
   const maxX = width - 1;
@@ -109,12 +113,18 @@ function shade(inputs, data) {
         g = 60;
         b = 136;
       } else {
-        const f = Math.min(Math.max(z0 - data.minElevation, 0) / range, 1);
-        const index = Math.round(f * (data.steps - 1));
-        color = data.ramp[index];
-        r = cosIncidence * color[0];
-        g = cosIncidence * color[1];
-        b = cosIncidence * color[2];
+        if (data.mode === 'shade') {
+          r = 55 + cosIncidence * 200;
+          g = 55 + cosIncidence * 200;
+          b = 55 + cosIncidence * 200;
+        } else {
+          const f = Math.min(Math.max(z0 - data.minElevation, 0) / range, 1);
+          const index = Math.round(f * (data.steps - 1));
+          color = data.ramp[index];
+          r = cosIncidence * color[0];
+          g = cosIncidence * color[1];
+          b = cosIncidence * color[2];
+        }
       }
 
       shadeData[offset] = r;
@@ -172,6 +182,31 @@ controlIds.forEach(function(id) {
   controls[id] = control;
 });
 
+let mode = 'raw';
+function updateModeSwitcher() {
+  for (const id in controls) {
+    let visibility;
+    if (mode === 'raw') {
+      visibility = 'hidden';
+    } else if (mode === 'shade') {
+      visibility = id === 'level' ? 'hidden' : '';
+    } else {
+      visibility = '';
+    }
+    document.getElementById(`${id}Row`).style.visibility = visibility;
+  }
+}
+
+updateModeSwitcher();
+
+document.getElementsByName('mode').forEach(input => {
+  input.addEventListener('change', event => {
+    mode = event.target.value;
+    raster.changed();
+    updateModeSwitcher();
+  });
+});
+
 raster.on('beforeoperations', function(event) {
   // the event.data object will be passed to operations
   const data = event.data;
@@ -183,6 +218,7 @@ raster.on('beforeoperations', function(event) {
   data.steps = steps;
   data.minElevation = minElevation;
   data.maxElevation = maxElevation;
+  data.mode = mode;
 });
 
 const locations = document.getElementsByClassName('location');
