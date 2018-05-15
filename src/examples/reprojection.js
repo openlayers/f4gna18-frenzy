@@ -2,15 +2,16 @@ import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
-import {OSM, Vector} from 'ol/source';
+import {XYZ, Vector} from 'ol/source';
 import GeoJSON from 'ol/format/GeoJSON';
-import {addCoordinateTransforms, transform} from 'ol/proj';
+import {addCoordinateTransforms, get, transform} from 'ol/proj';
 import {Style, Stroke} from 'ol/style';
 import Projection from 'ol/proj/Projection';
 import mproj from 'mproj';
-import greenland from './greenland.geojson';
+import greenland from './data/greenland.geojson';
 
 const nuuk = [-51.694138, 64.18141];
+const resolutionFactor = 2.29;
 
 const epsg3182 =
   '+proj=utm +zone=22 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs';
@@ -58,14 +59,24 @@ const map = new Map({
   target: 'map',
   layers: [
     new TileLayer({
-      source: new OSM()
+      source: new XYZ({
+        url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'
+      })
     }),
     vectorLayer
   ]
 });
+
+get('EPSG:3857').setGetPointResolution(function(resolution, coordinate) {
+  return resolution;
+});
+proj.setGetPointResolution(function(resolution, coordinate) {
+  return resolution * resolutionFactor;
+});
+
 const view3857 = new View({
   center: transform(nuuk, 'EPSG:4326', 'EPSG:3857'),
-  zoom: 3
+  resolution: 22395.43779133036
 });
 map.setView(view3857);
 const view3128 = new View({
@@ -77,7 +88,7 @@ document.getElementById('epsg3182').addEventListener('click', function() {
   if (map.getView() !== view3128) {
     vectorLayer.setSource(vector3128);
     view3128.setResolution(
-      view3128.constrainResolution(view3857.getResolution() / 2.3)
+      view3128.constrainResolution(view3857.getResolution() / resolutionFactor)
     );
     view3128.setCenter(transform(view3857.getCenter(), 'EPSG:3857', proj));
     view3128.setRotation(view3857.getRotation());
@@ -87,7 +98,7 @@ document.getElementById('epsg3182').addEventListener('click', function() {
 document.getElementById('epsg3857').addEventListener('click', function() {
   if (map.getView() !== view3857) {
     vectorLayer.setSource(vector3857);
-    view3857.setResolution(view3128.getResolution() * 2.3);
+    view3857.setResolution(view3128.getResolution() * resolutionFactor);
     view3857.setCenter(transform(view3128.getCenter(), proj, 'EPSG:3857'));
     view3857.setRotation(view3128.getRotation());
     map.setView(view3857);
