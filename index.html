@@ -13,7 +13,7 @@ view.animate({
   easing: easeOut,
   center: rome
 });
-    </code></pre> <small class="block center"> <a href="examples/view-animation.html" target="_blank">example</a> </small> </div>  <div> <h1>reprojection</h1> <pre><code>
+    </code></pre> <small class="block center"> <a href="view-animation.html" target="_blank">example</a> </small> </div>  <div> <h1>reprojection</h1> <pre><code>
 const view = new View({
   projection: custom
 });
@@ -30,13 +30,13 @@ const view = new View({
 const source = new XYZSource({
   projection: mercator
 });
-    </code></pre> <small class="block center"> <a target="_blank" href="examples/reprojection.html">example</a> </small> </div>  <div> <h1>feature editing</h1> <pre><code>
+    </code></pre> <small class="block center"> <a target="_blank" href="reprojection.html">example</a> </small> </div>  <div> <h1>feature editing</h1> <pre><code>
 import {Draw, Modify, Snap} from 'ol/interaction';
 
 map.addInteraction(
   new Draw({type: 'Polygon', source: source})
 );
-    </code></pre> <small class="block center"> <a href="examples/feature-editor.html" target="_blank">example</a> </small> </div> <div> <h1>feature style</h1> <pre><code>
+    </code></pre> <small class="block center"> <a href="feature-editor.html" target="_blank">example</a> </small> </div> <div> <h1>feature style</h1> <pre><code>
 import {Style, Fill, Stroke} from 'ol/style';
 
 layer.setStyle(new Style({
@@ -54,7 +54,7 @@ layer.setStyle(function(feature, resolution) {
   }
   return otherStyle;
 });
-    </code></pre> <small class="block center"> <a href="examples/feature-style.html" target="_blank">example</a> </small> </div>  <div> <h1>vector tiles</h1> <pre><code>
+    </code></pre> <small class="block center"> <a href="feature-style.html" target="_blank">example</a> </small> </div>  <div> <h1>vector tiles</h1> <pre><code>
 import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorTile from 'ol/source/VectorTile';
 import MVT from 'ol/format/MVT';
@@ -91,7 +91,7 @@ import {apply} from 'ol-mapbox-style';
 
 apply('map', 'https://free.tilehosting.com/' +
     'styles/bright/style.json');
-    </code></pre> <small class="block center"> <a href="examples/vector-tiles.html" target="_blank">example</a> </small> </div>  <div> <h1>raster operations</h1> <pre><code>
+    </code></pre> <small class="block center"> <a href="vector-tiles.html" target="_blank">example</a> </small> </div>  <div> <h1>raster operations</h1> <pre><code>
 import {Raster} from 'ol/source';
 
 const source = new Raster({
@@ -100,7 +100,7 @@ const source = new Raster({
     // do whatever you want here
   }
 });
-    </code></pre> <small class="block center"> <a href="examples/raster.html" target="_blank">example</a> </small> </div>  <div> <h1>canvas drawing <br>(high level)</h1> <pre><code>
+    </code></pre> <small class="block center"> <a href="raster.html" target="_blank">example</a> </small> </div>  <div> <h1>canvas drawing <br>(high level)</h1> <pre><code>
 import {toContext} from 'ol/render';
 
 const vectorContext = toContext(canvasElement);
@@ -120,4 +120,4 @@ map.on('postcompose', function(event) {
   context.fillText('© 2018 OpenLayers',
   10, context.canvas.height - 20);
 });
-      </code></pre> <small class="block center"> <a href="examples/magnify.html" target="_blank">example</a> </small> </div> <div class="aligned"> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div class="aligned"> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it!</p> </div> </div> <div data-bodyclass="center"> <h1>thanks</h1> </div> </body> </html>
+      </code></pre> <small class="block center"> <a href="magnify.html" target="_blank">example</a> </small> </div> <div class="aligned"> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div class="aligned"> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it!</p> </div> </div> <div data-bodyclass="center"> <h1>thanks</h1> </div> </body> </html>
