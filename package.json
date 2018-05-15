@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "mproj": "0.0.16",
-    "ol": "5.0.0-beta.13",
+    "ol": "^5.0.0-beta.13",
     "ol-hashed": "^2.0.0-beta.2",
-    "ol-mapbox-style": "^3.0.0-beta.4"
+    "ol-mapbox-style": "^3.0.0-beta.5"
   }
 }
