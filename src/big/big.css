@@ -4,9 +4,7 @@
   font-weight: 400;
   src:
     local('Rubik'),
-    local('Rubik-Regular'),
-    url('./rubik-v4-latin-regular.woff2') format('woff2'),
-    url('./rubik-v4-latin-regular.woff') format('woff');
+    local('Rubik-Regular');
 }
 
 html {
