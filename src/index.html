@@ -212,7 +212,9 @@ import {Raster} from 'ol/source';
 
 const source = new Raster({
   sources: [elevation, landcover],
-  operation: classify
+  operation: function(pixels, data) {
+    // do whatever you want here
+  }
 });
     </code></pre>
     <small class="block center"><a href="./examples/raster.html" target="_blank">example</a></small>
@@ -233,7 +235,7 @@ map.on('postcompose', function(event) {
     <small class="block center"><a href="./examples/magnify.html" target="_blank">example</a></small>
   </div>
   <div>
-    <h1>map canvas drawing (high level)</h1>
+    <h1>map canvas drawing<br>(high level)</h1>
     <pre><code>
 map.on('postcompose', function(event) {
   const vectorContext = event.vectorContext;
@@ -244,7 +246,7 @@ map.on('postcompose', function(event) {
     </code></pre>
   </div>
   <div>
-    <h1>canvas drawing (high level)</h1>
+    <h1>canvas drawing<br>(high level)</h1>
     <pre><code>
 import {toContext} from 'ol/render';
 
