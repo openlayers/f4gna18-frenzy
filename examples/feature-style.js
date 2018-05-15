@@ -1,7 +1,6 @@
 import 'ol/ol.css';
-import {Draw, Modify, Snap} from 'ol/interaction';
 import {fromLonLat} from 'ol/proj';
-import {Style, Stroke} from 'ol/style';
+import {Style, Fill, Stroke} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import {XYZ as XYZSource, Vector as VectorSource} from 'ol/source';
 import dataURL from './data/north-carolina-districts.geojson';
@@ -10,7 +9,7 @@ import Map from 'ol/Map';
 import sync from 'ol-hashed';
 import View from 'ol/View';
 
-const source = new VectorSource({
+const source =        new VectorSource({
   format: new GeoJSON(),
   url: dataURL
 });
@@ -25,20 +24,31 @@ const map = new Map({
     }),
     new VectorLayer({
       source: source,
-      style: [
-        new Style({
+      style: function(feature) {
+        const member = feature.get('member');
+        let r = 0;
+        let d = 0;
+        for (const session in member) {
+          const lookup = member[session];
+          for (const key in lookup) {
+            const party = lookup[key].party;
+            if (party === 'Democrat') {
+              ++d;
+            } else if (party === 'Republican') {
+              ++r;
+            }
+          }
+        }
+        const t = r + d;
+        return new Style({
+          fill: new Fill({
+            color: [r * 255 / t, 0, d * 255 / t, 0.5]
+          }),
           stroke: new Stroke({
-            color: [255, 255, 255, 0.5],
-            width: 6
+            color: [255, 255, 255, 0.6]
           })
-        }),
-        new Style({
-          stroke: new Stroke({
-            color: [0, 153, 255, 1],
-            width: 2
-          })
-        })
-      ]
+        });
+      }
     }),
     new TileLayer({
       source: new XYZSource({
@@ -51,9 +61,5 @@ const map = new Map({
     zoom: 7
   })
 });
-
-map.addInteraction(new Modify({source: source}));
-map.addInteraction(new Draw({type: 'Polygon', source: source}));
-map.addInteraction(new Snap({source: source}));
 
 sync(map);
