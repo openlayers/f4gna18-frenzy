@@ -98,7 +98,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({51:[function(require,module,exports) {
+})({64:[function(require,module,exports) {
 var define;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -1211,7 +1211,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
   }), e;
 });
-},{}],50:[function(require,module,exports) {
+},{}],63:[function(require,module,exports) {
 /* @flow weak */
 window.addEventListener('load', function () {
   // document.body isn't a guaranteed value: Flow will yell at
@@ -1662,7 +1662,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _highlight2.default.configure({ languages: ['javascript'] });
 _highlight2.default.initHighlightingOnLoad();
-},{"./big/highlight":51,"./big/big.js":50}],364:[function(require,module,exports) {
+},{"./big/highlight":64,"./big/big.js":63}],377:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -1691,7 +1691,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58262' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52828' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -1832,5 +1832,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[364,13], null)
+},{}]},{},[377,13], null)
 //# sourceMappingURL=/show.1a9b2da6.map

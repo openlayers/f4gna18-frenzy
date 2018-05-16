@@ -1,4 +1,4 @@
-<!DOCTYPE html><html> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>Big</title> <link href="big.42125c05.css" rel="stylesheet" type="text/css"> <link href="highlight.ed7f3bfe.css" rel="stylesheet" type="text/css"> <style>body{font-family:Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif}.bright{background:#fdcc32}.block{display:block}.center,h1{text-align:center}.slide-container{justify-content:center}a{text-decoration:none}.aligned{display:flex;flex-direction:column;align-items:center}</style> <script src="show.0027d425.js"></script> </head> <body class="light"> <div data-bodyclass="bright center"> <p>OpenLayers</p> <small>feature frenzy</small> </div> <div data-bodyclass="bright center"> <p>ahocevar@boundlessgeo.com</p> <br> <p>tim@planet.com</p> </div> <div data-bodyclass="bright center"> <h1>OpenLayers 5 <br>is coming</h1> <br> <div> <code>npm install ol@beta</code> </div> <br> <p>What's new? What's cool?</p> </div>  <div> <h1>view animation</h1> <pre><code>
+<!DOCTYPE html><html> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>Big</title> <link href="big.42125c05.css" rel="stylesheet" type="text/css"> <link href="highlight.ed7f3bfe.css" rel="stylesheet" type="text/css"> <style>body{font-family:Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif}.bright{background:#fdcc32}.block{display:block}.center,h1{text-align:center}.slide-container{justify-content:center}a{text-decoration:none}div.slide{display:flex;flex-direction:column;align-items:center}</style> <script src="show.0027d425.js"></script> </head> <body class="light"> <div data-bodyclass="bright center"> <p>OpenLayers</p> <small>feature frenzy</small> </div> <div data-bodyclass="bright center"> <p>ahocevar@boundlessgeo.com</p> <br> <p>tim@planet.com</p> </div> <div data-bodyclass="bright center"> <h1>OpenLayers 5 <br>is coming</h1> <br> <div> <code>npm install ol@beta</code> </div> <br> <p>What's new? What's cool?</p> </div>  <div> <h1>view animation</h1> <pre><code>
 view.animate({
   duration: 1500,
   center: fromLonLat([-110, 45]),
@@ -7,11 +7,13 @@ view.animate({
 })
     </code></pre> </div> <div> <h1>animation chaining!</h1> <pre><code>
 view.animate({
-  easing: easeIn,
-  center: london
+  center: london,
+  easing: easeIn
 }, {
-  easing: easeOut,
-  center: rome
+  center: rome,
+  easing: easeOut
+}, function() {
+  // all done
 });
     </code></pre> <small class="block center"> <a href="view-animation.html" target="_blank">example</a> </small> </div>  <div> <h1>reprojection</h1> <pre><code>
 const view = new View({
@@ -117,7 +119,9 @@ map.on('postcompose', function(event) {
 map.on('postcompose', function(event) {
   const context = event.context;
   context.font = '30px Arial';
-  context.fillText('© 2018 OpenLayers',
-  10, context.canvas.height - 20);
+  context.fillText(
+    '© 2018 OpenLayers',
+    10, context.canvas.height - 20
+  );
 });
-      </code></pre> <small class="block center"> <a href="magnify.html" target="_blank">example</a> </small> </div> <div class="aligned"> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div class="aligned"> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it!</p> </div> </div> <div data-bodyclass="center"> <h1>thanks</h1> </div> </body> </html>
+      </code></pre> <small class="block center"> <a href="magnify.html" target="_blank">example</a> </small> </div> <div> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it!</p> </div> </div> <div data-bodyclass="bright"> <h1>thanks</h1> </div> </body> </html>
