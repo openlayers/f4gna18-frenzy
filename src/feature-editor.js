@@ -54,15 +54,41 @@ const map = new Map({
   })
 });
 
-map.addInteraction(new Modify({source: source}));
-map.addInteraction(new Draw({type: 'Polygon', source: source}));
-map.addInteraction(new Snap({source: source}));
+const modify = new Modify({source: source});
+const draw = new Draw({type: 'Polygon', source: source});
+const snap = new Snap({source: source});
+
+map.addInteraction(modify);
+map.addInteraction(draw);
+map.addInteraction(snap);
 
 document.addEventListener('keydown', function(event) {
   if (event.which === 32) {
-    overlay.setVisible(!overlay.getVisible());
+    event.preventDefault();
+    setEditing(true);
+    return false;
+  }
+  if (event.which === 27) {
+    event.preventDefault();
+    setEditing(false);
     return false;
   }
 });
+
+const instructions = document.getElementById('instructions');
+function setEditing(editing) {
+  overlay.setVisible(!editing);
+  modify.setActive(editing);
+  draw.setActive(editing);
+  snap.setActive(editing);
+  let markup;
+  if (editing) {
+    markup = 'press <code>&lt;esc&gt;</code> to stop editing';
+  } else {
+    markup = 'press <code>&lt;space&gt;</code> to start editing';
+  }
+  instructions.innerHTML = markup;
+}
+setEditing(false);
 
 sync(map);
