@@ -1,11 +1,11 @@
-<!DOCTYPE html><html> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>Big</title> <link href="big.42125c05.css" rel="stylesheet" type="text/css"> <link href="highlight.ed7f3bfe.css" rel="stylesheet" type="text/css"> <style>body{font-family:Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif}.bright{background:#fdcc32}.block{display:block}.center,h1{text-align:center}.slide-container{justify-content:center}a{text-decoration:none}div.slide{display:flex;flex-direction:column;align-items:center}</style> <script src="show.0027d425.js"></script> </head> <body class="light"> <div data-bodyclass="bright center"> <p>OpenLayers</p> <small>feature frenzy</small> </div> <div data-bodyclass="bright center"> <p>ahocevar@boundlessgeo.com</p> <br> <p>tim@planet.com</p> </div> <div data-bodyclass="bright center"> <h1>OpenLayers 5 <br>is coming</h1> <br> <div> <code>npm install ol@beta</code> </div> <br> <p>What's new? What's cool?</p> </div>  <div> <h1>view animation</h1> <pre><code>
+<!DOCTYPE html><html> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>Big</title> <link href="big.42125c05.css" rel="stylesheet" type="text/css"> <link href="highlight.ed7f3bfe.css" rel="stylesheet" type="text/css"> <style>body{font-family:Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif}.bright{background:#fdcc32}.block{display:block}.center,h1{text-align:center}.slide-container{justify-content:center}a{text-decoration:none}div.slide{display:flex;flex-direction:column;align-items:center}</style> <script src="show.0027d425.js"></script> </head> <body class="light"> <div data-bodyclass="bright center"> <p>OpenLayers</p> <small>feature frenzy</small> </div> <div data-bodyclass="bright center"> <p>ahocevar@boundlessgeo.com</p> <br> <p>tim@planet.com</p> </div> <div data-bodyclass="bright center"> <h1>OpenLayers 5 <br>is coming 🎉</h1> <br> <div> <code>npm install ol@beta</code> </div> <br> <p>What's new? What's cool?</p> </div>  <div> <h1>view animation</h1> <pre><code>
 view.animate({
   duration: 1500,
   center: fromLonLat([-110, 45]),
   rotation: Math.PI / 4,
   zoom: 12
 })
-    </code></pre> </div> <div> <h1>animation chaining!</h1> <pre><code>
+    </code></pre> </div> <div> <h1>animation chaining ⛓</h1> <pre><code>
 view.animate({
   center: london,
   easing: easeIn
@@ -24,7 +24,7 @@ const source = new VectorSource({
   url: 'http://example.com/world.json',
   format: new GeoJSON()
 });
-    </code></pre> </div> <div> <h1>reprojection <br>(raster too!)</h1> <pre><code>
+    </code></pre> </div> <div> <h1>reprojection <br>(raster too 💪)</h1> <pre><code>
 const view = new View({
   projection: custom
 });
@@ -49,7 +49,7 @@ layer.setStyle(new Style({
     color: [255, 153, 0, 0.5]
   })
 }));
-    </code></pre> </div> <div> <h1>feature style <br>(dynamic)</h1> <pre><code>
+    </code></pre> </div> <div> <h1>feature style <br>(dynamic 💥)</h1> <pre><code>
 layer.setStyle(function(feature, resolution) {
   if (feature.get('type') == 'special') {
     return specialStyle;
@@ -88,7 +88,7 @@ layer.setStyle(function(feature) {
   }));
   return style;
 });
-    </code></pre> </div> <div> <h1>vector tiles <br>(mapbox style)</h1> <pre><code>
+    </code></pre> </div> <div> <h1>vector tiles <br>(mapbox style 😲)</h1> <pre><code>
 import {apply} from 'ol-mapbox-style';
 
 apply('map', 'https://free.tilehosting.com/' +
@@ -124,4 +124,4 @@ map.on('postcompose', function(event) {
     10, context.canvas.height - 20
   );
 });
-      </code></pre> <small class="block center"> <a href="magnify.html" target="_blank">example</a> </small> </div> <div> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it!</p> </div> </div> <div data-bodyclass="bright"> <h1>thanks</h1> </div> </body> </html>
+      </code></pre> <small class="block center"> <a href="magnify.html" target="_blank">example</a> </small> </div> <div> <h1>es modules</h1> <div> <p>✓ works with webpack</p> <p>✓ works with parcel</p> <p>✓ works with rollup</p> <p>✓ #0CJS FTW!</p> </div> </div> <div> <h1>what's next?</h1> <div> <p>☐ documentation</p> <p>☐ website</p> <p>☐ ship it 🚢</p> </div> </div> <div data-bodyclass="bright"> <h1>thanks</h1> </div> </body> </html>
