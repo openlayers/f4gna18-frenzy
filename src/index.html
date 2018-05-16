@@ -36,7 +36,7 @@
       text-decoration: none;
     }
 
-    .aligned {
+    div.slide {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -84,11 +84,13 @@ view.animate({
     <h1>animation chaining!</h1>
     <pre><code>
 view.animate({
-  easing: easeIn,
-  center: london
+  center: london,
+  easing: easeIn
 }, {
-  easing: easeOut,
-  center: rome
+  center: rome,
+  easing: easeOut
+}, function() {
+  // all done
 });
     </code></pre>
     <small class="block center">
@@ -291,7 +293,7 @@ map.on('postcompose', function(event) {
     </small>
   </div>
 
-  <div class="aligned">
+  <div>
     <h1>es modules</h1>
     <div>
       <p>✓ works with webpack</p>
@@ -301,7 +303,7 @@ map.on('postcompose', function(event) {
     </div>
   </div>
 
-  <div class="aligned">
+  <div>
     <h1>what's next?</h1>
     <div>
       <p>☐ documentation</p>
@@ -310,7 +312,7 @@ map.on('postcompose', function(event) {
     </div>
   </div>
 
-  <div data-bodyclass="center">
+  <div data-bodyclass="bright">
     <h1>thanks</h1>
   </div>
 
