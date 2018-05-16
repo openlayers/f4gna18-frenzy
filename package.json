@@ -6,7 +6,7 @@
     "test": "npm run lint",
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url ./",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "rm -rf dist && npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
