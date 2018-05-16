@@ -15,6 +15,12 @@ const source = new VectorSource({
   url: dataURL
 });
 
+const overlay = new TileLayer({
+  source: new XYZSource({
+    url: 'https://api.mapbox.com/styles/v1/tschaub/cjh953yhw1b2l2rqwpbglpnxq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidHNjaGF1YiIsImEiOiJjaW5zYW5lNHkxMTNmdWttM3JyOHZtMmNtIn0.CDIBD8H-G2Gf-cPkIuWtRg'
+  })
+});
+
 const map = new Map({
   target: 'map-container',
   layers: [
@@ -40,11 +46,7 @@ const map = new Map({
         })
       ]
     }),
-    new TileLayer({
-      source: new XYZSource({
-        url: 'https://api.mapbox.com/styles/v1/tschaub/cjh75hlvk00902rquajmff74y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidHNjaGF1YiIsImEiOiJjaW5zYW5lNHkxMTNmdWttM3JyOHZtMmNtIn0.CDIBD8H-G2Gf-cPkIuWtRg'
-      })
-    })
+    overlay
   ],
   view: new View({
     center: fromLonLat([-79.093, 35.224]),
@@ -55,5 +57,12 @@ const map = new Map({
 map.addInteraction(new Modify({source: source}));
 map.addInteraction(new Draw({type: 'Polygon', source: source}));
 map.addInteraction(new Snap({source: source}));
+
+document.addEventListener('keydown', function(event) {
+  if (event.which === 32) {
+    overlay.setVisible(!overlay.getVisible());
+    return false;
+  }
+});
 
 sync(map);
