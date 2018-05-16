@@ -284,8 +284,10 @@ map.on('postcompose', function(event) {
 map.on('postcompose', function(event) {
   const context = event.context;
   context.font = '30px Arial';
-  context.fillText('© 2018 OpenLayers',
-  10, context.canvas.height - 20);
+  context.fillText(
+    '© 2018 OpenLayers',
+    10, context.canvas.height - 20
+  );
 });
       </code></pre>
     <small class="block center">
