@@ -3,6 +3,7 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
+import {defaults} from 'ol/control';
 
 const locations = {
   schoenbrunn: [1815783.4408533734, 6137432.250809676],
@@ -13,6 +14,7 @@ const locations = {
 
 const imagery = new TileLayer({
   source: new XYZ({
+    attributions: ['Data source: <a target="_blank" href="https://www.basemap.at/">basemap.at</a>'],
     crossOrigin: 'anonymous',
     url: 'https://maps{1-4}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg'
   })
@@ -23,6 +25,12 @@ const container = document.getElementById('map-container');
 const map = new Map({
   layers: [imagery],
   target: container,
+  controls: defaults({
+    attributionOptions: {
+      collapsed: false,
+      collapsible: false
+    }
+  }),
   view: new View({
     center: [1815783.4408533734, 6137432.250809676],
     zoom: 19,
